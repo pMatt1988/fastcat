@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #calculator {
+
+        }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</head>
+<body>
+<main id="calculator" class="">
+    <fieldset class="" x-data="{
+    time: 0,
+    handicap: 1.0,
+    get points() {
+    return roundToTwo((204.545 / this.time) * this.handicap);
+    }
+    }">
+        <label>
+            Time
+            <input type="number" name="time" id="time" x-model="time">
+        </label>
+
+        <label>
+            Handicap
+            <select name="handicap" id="handicap" x-model="handicap">
+                <option value="1.0">Over 18 inches</option>
+                <option value="1.5">Under 18 inches</option>
+                <option value="2.0">Under 12 inches</option>
+            </select>
+        </label>
+
+        <p x-show="time > 0">Points: <span x-text="points"></span></p>
+
+
+    </fieldset>
+</main>
+<script>
+    function roundToTwo(num) {
+        return Math.round((num + Number.EPSILON) * 100) / 100
+    }
+</script>
+</body>
+</html>
